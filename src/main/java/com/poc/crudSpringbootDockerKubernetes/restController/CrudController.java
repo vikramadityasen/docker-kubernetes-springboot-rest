@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.poc.crudSpringbootDockerKubernetes.model.Department;
 import com.poc.crudSpringbootDockerKubernetes.model.Employee;
+import com.poc.crudSpringbootDockerKubernetes.service.DepartmentService;
 import com.poc.crudSpringbootDockerKubernetes.service.EmployeeService;
 
 @RequestMapping("/api")
@@ -28,6 +30,9 @@ public class CrudController {
 
 	@Autowired
 	private EmployeeService employeeService;
+	
+	@Autowired
+	private DepartmentService departmentService;
 	
 	@GetMapping(value = "/employee", produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Employee> getEmployee(){
@@ -54,4 +59,14 @@ public class CrudController {
 		logger.debug("Deleted employee having customer Id- {}", id);
 		employeeService.deleteEmployee(id);
 	}
+	
+	@GetMapping(value = "/department", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Department> getDepartment(){
+		return departmentService.getDepartment();
+	}
+	
+	@GetMapping(value = "/department/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<Department> getDepartment(@PathVariable Integer id){
+		return departmentService.getDepartment(id);
+	} 
 }
