@@ -6,11 +6,13 @@ Java, Rest API, Springboot, JPA, H2, docker, Kubernetes.
 
 CRUD operation for Employee & Department service with one-to-many mapping.
 
-# Docker configuration : 
-
-Docker Requirements:
+#  Docker Requirements:
 
 Docker toolbox or Docker hub desktop
+
+We can configure our github repository with docker hub so that when ever we push our code into github that will automatically build and available into docker hub.
+
+https://hub.docker.com/repository/docker/vikramadityasen/docker-kubernetes-springboot-rest
 
 # Dockerfile
 FROM java:8
@@ -41,7 +43,6 @@ docker rmi
 
 # Kubernetes Requirements
 
-
 Our OS should support virtualization and we should have VirtualBox or hyprev.
 
 create directory c:/kube
@@ -68,7 +69,7 @@ Running the Docker image in the minikube has to be done in three steps.
 
 3. Identify the URL of the service and access it from outside of the cluster
 
-#Creating a Deployment Using an Existing Docker Image
+# Creating a Deployment Using an Existing Docker Image
 
 The command to create and run a deployment, as shown below:
 
@@ -76,7 +77,7 @@ kubectl run kube-app --image=vikramaditaysen/docker-kubernetes-springboot-rest:k
 
 This command will use the tag kubeapp1 from the repository docker-kubernetes-springboot-rest  at deployment. 
 
-#Creating a Service for the Deployment
+# Creating a Service for the Deployment
 
 To access the deployment created in the above section from outside the minikube cluster, we need to expose it as a service. The command to expose it is provided below:
 
@@ -86,7 +87,7 @@ kubectl get services
 
 The first command will create the service and the second command will display the list of services and their details. The service would be exposed at port 8080. 
 
-#Accessing the Service
+# Accessing the Service
 
 Once the service is available, we need to access it from outside the cluster, To identify the external URL for the service, use the following command:
 
