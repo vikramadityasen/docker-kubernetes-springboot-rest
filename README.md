@@ -97,43 +97,52 @@ http://192.168.99.100:31167
 
 # Kubernetes Spring Boot Example in Google Kubernetes Engine (GKE)
 
-Create Spring Boot app
+# Create Spring Boot app
+
 You can use the sample project which I have in here.
 
-git clone https://github.com/TechPrimers/spring-boot-lazy-init-example.git
+git clone https://github.com/vikramadityasen/docker-kubernetes-springboot-rest.git
 
-Create Docker image
+# Create Docker image
+
 Command to create docker image using Google JIB plugin
 
 ./mvnw com.google.cloud.tools:jib-maven-plugin:build -Dimage=gcr.io/$GOOGLE_CLOUD_PROJECT/docker-kubernetes-springboot-rest:v1
 
-Run the Docker image
+# Run the Docker image
+
 Command to run the docker image which we created in the previous step
 
 docker run -ti --rm -p 8080:8080 gcr.io/$GOOGLE_CLOUD_PROJECT/docker-kubernetes-springboot-rest:v1
 
-Login to the K8s Cluster
+# Login to the K8s Cluster
+
 Command to login to the K8s cluster from Cloud Shell
 
 gcloud container clusters get-credentials techprimer-cluster-1 --zone us-central1-a
 
 # Kubernetes Commands
 
-List Pods
+# List Pods
+
 kubectl get pods
 
-List Deployments
+# List Deployments
+
 kubectl get deployments
 
-List Services
+# List Services
+
 kubectl get services
 
-Deploy an image
+# Deploy an image
+
 kubectl run docker-kubernetes-springboot-rest --image=gcr.io/$GOOGLE_CLOUD_PROJECT/docker-kubernetes-springboot-rest:v1 --port=8080
 
-Expose Load Balancer
+# Expose Load Balancer
+
 kubectl expose deployment docker-kubernetes-springboot-rest --type=LoadBalancer
 
-Scale deployments
-kubectl scale deployment docker-kubernetes-springboot-rest --replicas=3
+# Scale deployments
 
+kubectl scale deployment docker-kubernetes-springboot-rest --replicas=3
